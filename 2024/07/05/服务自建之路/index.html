@@ -1,0 +1,569 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>RSS 服务自建之路 | TianXiYou</title><meta name="keywords" content="NAS"><meta name="author" content="田西柚"><meta name="copyright" content="田西柚"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="RSS 服务自建之路"><meta name="application-name" content="RSS 服务自建之路"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="RSS 服务自建之路"><meta property="og:url" content="https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/index.html"><meta property="og:site_name" content="TianXiYou"><meta property="og:description" content="折腾rsshub、freshrss、miniflux全记录"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117100837942.png"><meta property="article:author" content="田西柚"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117100837942.png"><meta name="description" content="折腾rsshub、freshrss、miniflux全记录"><link rel="shortcut icon" href="/new.gif"><link rel="canonical" href="https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"你好呀！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: 'https://twikoo.tianxiyou.site:43200',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🎨 二次元爱好者","🎮 冯骥歌词粉丝","🎵 周杰伦铁粉","📚 多读点没有的书"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 田西柚","link":"链接: ","source":"来源: TianXiYou","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'TianXiYou',
+  title: 'RSS 服务自建之路',
+  postAI: '',
+  pageFillDescription: 'rss是什么？, 为什么要用rss？, RSS 的食用方式, 阅读 RSS 的工具, 如何使用？, 网站自带的 RSS, 自建订阅源——解决不提供 rss 服务的网站的问题, rsshub的安装, rsshub 的使用, 自建 RSS 管理端——解决数据同步的问题, 总结是什么英文全称或中文译作简易信息聚合也称聚合内容是一种消息来源格式规范用以聚合多个网站更新的内容并自动通知网站订阅者使用后网站订阅者便无需再手动查看网站是否有新的内容同时可将多个网站更新的内容进行整合以摘要的形式呈现有助于订阅者快速获取重要信息并选择性地点阅查看资源描述框架站点摘要即的英文原意后来通过逆向首字母缩略词变更为简易信息聚合将新闻标题摘要内容按照用户的要求推送至用户的桌面便是的目的有时一词大体上意为社会性书签包括各种的不同格式例如对使用网摘于一集成器内之动作标为和虽然它的第一个句子就包含明确的格式和文件能够用简单的格式从网站更新消息至你的电脑摘要可以借由阅读器或等网页或以桌面为架构的软件来阅读标准的档式可允许信息在一次发布后通过不同的程序阅览用户借由将网摘输入阅读器或是用鼠标点取浏览器上指向订阅程序的小图标非通常所称的来订阅网摘阅读器会定期检阅网站是否有更新然后下载至监看用户界面可以是以下三种解释中任何一种的缩写但其实这三者都是指同一种联合供稿的技术为什么要用使用有许多好处尤其是在获取和管理大量信息时以下是一些主要原因简化信息获取通过订阅源用户可以集中获取多个网站的最新内容而无需逐个访问这些网站节省时间使用户能够在一个地方查看所有订阅网站的最新更新避免了手动搜索和访问多个网站的时间信息定制用户可以选择订阅他们感兴趣的特定内容源确保他们收到的都是与自己相关的信息无广告干扰通常只提供内容而不包含广告这意味着用户可以获得更干净更集中的信息离线阅读许多阅读器允许用户将内容下载到本地设备上方便用户在没有网络连接时阅读实时更新源会自动更新用户可以实时获取最新的信息和文章保持隐私相比直接访问网站使用不会暴露用户的浏览习惯有助于保护用户隐私通过用户可以更加高效方便地管理和获取他们感兴趣的内容上面是说的实际上对我来说最主要的是信息类的国内都太过臃肿了输出的内容也不够优质铺天盖地的牛皮癣广告每种类型的信息内容需要到不同的平台去查看不能做到不会被大数据限制推送阅读的范围可以做到想看什么就看什么需要折腾的食用方式阅读的工具苹果生态买断制一次付费苹果生态内全部能用支持的协议比较全面开源免费的阅读器全平台免费生态安卓生态如何使用网站自带的有一些自带的网站博客比如本站的地址还有少数派的这些地址直接通过上述的阅读的工具进行订阅然后就能看到网站提供的内容了但是这样有两个问题阅读器因为平台的限制可能不能进行阅读进度同步也就是有些文章已读未读都无法记录下次换个设备还是得重新筛选一遍信息有些网站不提供但是又有非常好的内容想要及时的获取比如一些优质论坛图片壁纸发布网站等等不可能随时监控他们有没有更新这个时候不提供的站怎么订阅更新呢自建订阅源解决不提供服务的网站的问题的安装这个时候就要拉出来大名鼎鼎的了他的作用就是对各种网站生成地址涵盖了世界上大部分知名网站具体的介绍可以访问文档查看不再展开这里只说一下部署方式下面是我安装的实例对外映射端口可改实际容器端口不可改实际部署的地址按照实际情况修改部署完成之后访问就能访问了的使用在需要嗅探的网站上安装一个浏览器插件那么在可以进行生成地址的网站上这个插件就会标注出地址或者跳转文档页点击齿轮按照需求进行编辑选项在拿到了网站的路由之后拼上自己的地址就得到完全属于自己的订阅源了导入软件就可以食用了当然这里面还有一些别的操作比如代理外网访问等等但是不在本篇内容的讨论范围自建管理端解决数据同步的问题为了解决数据同步的问题可以有两个思路软件同步苹果生态下用然后同步全平台阅读器用官方付费的同步方式自建服务端自助同步进度作为一个能折腾的人我当然选择第二种目前比较流行的自建是有非常友好的界面支持插件还有比较小众的是不支持插件但是支持图片代理使用服务所在服务器直接缓存图片而不是在客户端下载图片全文抓取而且有非常简洁的并且支持自定义样式所以最终我选择了的方案而且现在彻底抛弃各种第三方的阅读器实际上是因为没有搞定在图片代理后第三方阅读器上无法展示图片的问题但是我不说谁又知道呢桀桀桀同样使用的方式部署登录用户名登录密码阅读器的域名每个的刷新间隔拉取出错后不会停止拉去还是会按计划继续拉每次拉取的数量拉取类型根据上周的平均更新周期来拉取接上条但也不会大于分钟建议和参数一起来看图片代理功能先把源端的图片缓存到服务器上来后续就不用客户端去源服务器拉了使用客户端缓存过文章然后某个时间重启了实例那么会导致图片无法显示的情况这是因为每次重启会随机生成所以可以增加参数固化便于解决更新重启等场景下的图片显示问题增加数据库连接数对于多图片的非常有效可以大幅提升加载和访问速度同上默认或适当加大部署完成之后访问端口地址就能访问了整体的使用方式非常简洁直观我的的样式参考了此项目总结折腾了一个星期后终于是把的方案定下了下一个折腾啥呢年月日',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-17 10:13:01',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/notion-avatar-1703571403454.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.tianxiyou.site/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://airanime.tianxiyou.site/#/home" title="番剧字典"><img class="back-menu-item-icon" src="https://raw.githubusercontent.com/txperl/airAnime/refs/heads/master/favicon.ico" alt="番剧字典"/><span class="back-menu-item-text">番剧字典</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">TianXiYou</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/RSS/" style="font-size: 1.05rem;">RSS<sup>1</sup></a><a href="/tags/docker/" style="font-size: 1.05rem;">docker<sup>1</sup></a><a href="/tags/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">实用教程<sup>1</sup></a><a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 1.05rem;">年终总结<sup>1</sup></a><a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 1.05rem;">思考<sup>2</sup></a><a href="/tags/%E6%96%87%E5%AD%97/" style="font-size: 1.05rem;">文字<sup>2</sup></a><a href="/tags/%E8%AE%BE%E5%A4%87%E4%BD%93%E9%AA%8C/" style="font-size: 1.05rem;">设备体验<sup>1</sup></a><a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 1.05rem;">读后感<sup>2</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/NAS/" itemprop="url">NAS</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/NAS/%E5%8D%9A%E4%B8%BB%E6%8E%A8%E8%8D%90/" itemprop="url">博主推荐</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/docker/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>docker</span></a><a class="article-meta__tags" href="/tags/RSS/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>RSS</span></a><a class="article-meta__tags" href="/tags/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>实用教程</span></a></span></div></div><h1 class="post-title" itemprop="name headline">RSS 服务自建之路</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-07-04T16:00:00.000Z" title="发表于 2024-07-05 00:00:00">2024-07-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-01-17T02:13:01.248Z" title="更新于 2025-01-17 10:13:01">2025-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为山东"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>山东</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117100837942.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/"><header><a class="post-meta-categories" href="/categories/NAS/" itemprop="url">NAS</a><a class="post-meta-categories" href="/categories/NAS/%E5%8D%9A%E4%B8%BB%E6%8E%A8%E8%8D%90/" itemprop="url">博主推荐</a><a href="/tags/docker/" tabindex="-1" itemprop="url">docker</a><a href="/tags/RSS/" tabindex="-1" itemprop="url">RSS</a><a href="/tags/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/" tabindex="-1" itemprop="url">实用教程</a><h1 id="CrawlerTitle" itemprop="name headline">RSS 服务自建之路</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">田西柚</span><time itemprop="dateCreated datePublished" datetime="2024-07-04T16:00:00.000Z" title="发表于 2024-07-05 00:00:00">2024-07-05</time><time itemprop="dateCreated datePublished" datetime="2025-01-17T02:13:01.248Z" title="更新于 2025-01-17 10:13:01">2025-01-17</time></header><h1 id="rss是什么？"><a href="#rss是什么？" class="headerlink" title="rss是什么？"></a><strong>rss是什么？</strong></h1><blockquote>
+<p>RSS（英文全称：RDF Site Summary 或 Really Simple Syndication[2]），中文译作简易信息聚合[3]，也称聚合内容[4]，是一种消息来源格式规范，用以聚合多个网站更新的内容并自动通知网站订阅者。使用 RSS 后，网站订阅者便无需再手动查看网站是否有新的内容，同时 RSS 可将多个网站更新的内容进行整合，以摘要的形式呈现，有助于订阅者快速获取重要信息，并选择性地点阅查看。</p>
+<p>“资源描述框架站点摘要”（RDF Site Summary）即 RSS 的英文原意，后来通过<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%86%E5%90%91%E9%A6%96%E5%AD%97%E6%AF%8D%E7%BC%A9%E7%95%A5%E8%AF%8D"><strong>逆向首字母缩略词</strong></a>变更为“Really Simple Syndication”（简易信息聚合）。将新闻标题、摘要（Feed）、内容按照用户的要求，推送至用户的桌面便是 RSS 的目的。有时 RSS 一词大体上意为“社会性书签”，包括各种 RSS 的不同格式；例如，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=Blogspace&action=edit&redlink=1"><strong>Blogspace</strong></a> 对使用网摘于一集成器内之动作标为 RSS info 和 RSS reader，虽然它的第一个句子就包含明确的 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Atom_(%E6%A8%99%E6%BA%96)"><strong>Atom</strong></a> 格式：“RSS 和 Atom 文件能够用简单的格式从网站更新消息至你的电脑！”</p>
+<p>RSS 摘要可以借由 RSS 阅读器、feed reader 或 aggregator 等网页或以桌面为架构的软件来阅读。标准的 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/XML"><strong>XML</strong></a> 档式可允许信息在一次发布后通过不同的程序阅览。用户借由将网摘输入 RSS 阅读器，或是用鼠标点取浏览器上指向订阅程序的 RSS 小图标 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/URI"><strong>URI</strong></a>（非通常所称的 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/URL"><strong>URL</strong></a>）来订阅网摘。RSS 阅读器会定期检阅网站是否有更新，然后下载至监看用户界面。</p>
+<p>RSS 可以是以下三种解释中任何一种的缩写，但其实这三者都是指同一种联合供稿（Syndication）的技术：</p>
+<ul>
+<li>RSS 2.0（Really Simple Syndication）</li>
+<li>RSS 0.91, RSS 1.0（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6"><strong>RDF</strong></a>（Resource Description Framework）Site Summary）</li>
+<li>RSS 0.9 and 1.0（Rich Site Summary）</li>
+</ul>
+</blockquote>
+<h1 id="为什么要用rss？"><a href="#为什么要用rss？" class="headerlink" title="为什么要用rss？"></a><strong>为什么要用rss？</strong></h1><blockquote>
+<p>使用 RSS（Really Simple Syndication）有许多好处，尤其是在获取和管理大量信息时。以下是一些主要原因：</p>
+<ol>
+<li><strong>简化信息获取</strong>：通过订阅 RSS 源，用户可以集中获取多个网站的最新内容，而无需逐个访问这些网站。</li>
+<li><strong>节省时间</strong>：RSS 使用户能够在一个地方查看所有订阅网站的最新更新，避免了手动搜索和访问多个网站的时间。</li>
+<li><strong>信息定制</strong>：用户可以选择订阅他们感兴趣的特定内容源，确保他们收到的都是与自己相关的信息。</li>
+<li><strong>无广告干扰</strong>：RSS 通常只提供内容而不包含广告，这意味着用户可以获得更干净、更集中的信息。</li>
+<li><strong>离线阅读</strong>：许多 RSS 阅读器允许用户将内容下载到本地设备上，方便用户在没有网络连接时阅读。</li>
+<li><strong>实时更新</strong>：RSS 源会自动更新，用户可以实时获取最新的信息和文章。</li>
+<li><strong>保持隐私</strong>：相比直接访问网站，使用 RSS 不会暴露用户的浏览习惯，有助于保护用户隐私。</li>
+</ol>
+<p>通过 RSS，用户可以更加高效、方便地管理和获取他们感兴趣的内容。</p>
+</blockquote>
+<p>上面是 ChatGPT 说的，实际上对我来说最主要的是：</p>
+<ol>
+<li>信息类的国内 APP 都太过臃肿了</li>
+<li>输出的内容也不够优质</li>
+<li>铺天盖地的牛皮癣广告</li>
+<li>每种类型的信息内容，需要到不同的平台去查看，不能做到 <strong>all-in-one</strong></li>
+<li>不会被大数据限制推送阅读的范围，可以做到想看什么就看什么</li>
+<li><strong><del>需要折腾</del></strong></li>
+</ol>
+<h1 id="RSS-的食用方式"><a href="#RSS-的食用方式" class="headerlink" title="RSS 的食用方式"></a><strong>RSS 的食用方式</strong></h1><h2 id="阅读-RSS-的工具"><a href="#阅读-RSS-的工具" class="headerlink" title="阅读 RSS 的工具"></a><strong>阅读 RSS 的工具</strong></h2><ol>
+<li>苹果生态<ul>
+<li><a target="_blank" rel="noopener" href="https://reederapp.com/"><strong>Reeder</strong></a>，买断制，一次付费苹果生态内全部能用，支持的协议比较全面。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/yang991178/fluent-reader"><strong>Fluent reader</strong></a>，开源免费的 rss 阅读器，全平台免费</li>
+</ul>
+</li>
+<li>windows 生态<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/yang991178/fluent-reader"><strong>Fluent reader</strong></a></li>
+</ul>
+</li>
+<li>安卓生态<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/seazon/FeedMe"><strong>feedme</strong></a></li>
+</ul>
+</li>
+</ol>
+<h2 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a><strong>如何使用？</strong></h2><h3 id="网站自带的-RSS"><a href="#网站自带的-RSS" class="headerlink" title="网站自带的 RSS"></a><strong>网站自带的 RSS</strong></h3><p>有一些自带rss 的网站、博客，比如本站的 rss 地址：<a target="_blank" rel="noopener" href="https://blog.tianxiyou.site/rss/feed.xml"><strong>https://blog.tianxiyou.site/rss/feed.xml</strong></a>，还有少数派的：<a target="_blank" rel="noopener" href="https://sspai.com/feed"><strong>https://sspai.com/feed</strong></a>。</p>
+<p>这些地址直接通过上述的<strong>阅读 RSS 的工具</strong>进行订阅，然后就能看到网站提供的 RSS 内容了。</p>
+<p>但是这样有两个问题：</p>
+<ol>
+<li>阅读器因为平台的限制，可能不能进行阅读进度同步，也就是有些文章已读未读都无法记录，下次换个设备，还是得重新筛选一遍信息。</li>
+<li>有些网站，不提供 RSS，但是又有非常好的内容想要及时的获取，比如一些优质论坛、图片壁纸发布网站等等，不可能随时监控他们有没有更新，这个时候，不提供 rss 的站怎么订阅更新呢？</li>
+</ol>
+<h3 id="自建订阅源——解决不提供-rss-服务的网站的问题"><a href="#自建订阅源——解决不提供-rss-服务的网站的问题" class="headerlink" title="自建订阅源——解决不提供 rss 服务的网站的问题"></a><strong>自建订阅源——解决不提供 rss 服务的网站的问题</strong></h3><h3 id="rsshub的安装"><a href="#rsshub的安装" class="headerlink" title="rsshub的安装"></a><strong>rsshub的安装</strong></h3><p>这个时候就要拉出来大名鼎鼎的 <a target="_blank" rel="noopener" href="https://docs.rsshub.app/"><strong>rsshub</strong></a> 了，他的作用就是对各种网站生成 rss 地址，涵盖了世界上大部分知名网站，具体的介绍可以访问文档查看不再展开。</p>
+<p>!<a target="_blank" rel="noopener" href="https://minapi.tianxiyou.site:43200/tianzhepic/2024/07/05/202407051720051.png">https://minapi.tianxiyou.site:43200/tianzhepic/2024/07/05/202407051720051.png</a></p>
+<p>这里只说一下<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/"><strong>docker-compose</strong></a>部署方式，下面是我安装的实例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.9&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">rsshub:</span></span><br><span class="line">        <span class="comment"># two ways to enable puppeteer:</span></span><br><span class="line">        <span class="comment"># * comment out marked lines, then use this image instead: diygod/rsshub:chromium-bundled</span></span><br><span class="line">        <span class="comment"># * (consumes more disk space and memory) leave everything unchanged</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">diygod/rsshub</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">&#x27;1200:1200&#x27;</span> <span class="comment"># 对外映射端口（可改）：实际容器端口（不可改）</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="attr">NODE_ENV:</span> <span class="string">production</span></span><br><span class="line">            <span class="attr">CACHE_TYPE:</span> <span class="string">redis</span></span><br><span class="line">            <span class="attr">REDIS_URL:</span> <span class="string">&#x27;redis://redis:6379/&#x27;</span></span><br><span class="line">            <span class="attr">PUPPETEER_WS_ENDPOINT:</span> <span class="string">&#x27;ws://browserless:3000&#x27;</span>  <span class="comment"># marked</span></span><br><span class="line">        <span class="attr">depends_on:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">redis</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">browserless</span>  <span class="comment"># marked</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">browserless:</span>  <span class="comment"># marked</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">browserless/chrome</span>  <span class="comment"># marked</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span>  <span class="comment"># marked</span></span><br><span class="line">        <span class="attr">ulimits:</span>  <span class="comment"># marked</span></span><br><span class="line">          <span class="attr">core:</span>  <span class="comment"># marked</span></span><br><span class="line">            <span class="attr">hard:</span> <span class="number">0</span>  <span class="comment"># marked</span></span><br><span class="line">            <span class="attr">soft:</span> <span class="number">0</span>  <span class="comment"># marked</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">redis:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">redis:alpine</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">        <span class="attr">volumes:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">/volume1/docker/redis-6379:/data</span> <span class="comment">#实际部署的 redis 地址，/volume1/docker/redis-6379按照实际情况修改</span></span><br></pre></td></tr></table></figure>
+
+<p>部署完成之后，访问：<a target="_blank" rel="noopener" href="http://ip:1200/"><strong>http://ip:1200</strong></a>，就能访问了。</p>
+<h3 id="rsshub-的使用"><a href="#rsshub-的使用" class="headerlink" title="rsshub 的使用"></a><strong>rsshub 的使用</strong></h3><p>在需要嗅探的网站上，安装一个浏览器插件<a target="_blank" rel="noopener" href="https://github.com/DIYgod/RSSHub-Radar"><strong>RSSHub-Radar</strong></a>，那么在可以进行生成 rss 地址的网站上，这个插件就会标注出地址或者跳转文档页。</p>
+<p>点击齿轮，按照需求进行编辑选项。</p>
+<p>在拿到了网站的路由之后，拼上自己的地址就得到完全属于自己的 rss 订阅源了，导入软件就可以食用了。</p>
+<p>当然，这里面还有一些别的操作，比如 nginx 代理，外网访问等等，但是不在本篇内容的讨论范围。</p>
+<h3 id="自建-RSS-管理端——解决数据同步的问题"><a href="#自建-RSS-管理端——解决数据同步的问题" class="headerlink" title="自建 RSS 管理端——解决数据同步的问题"></a><strong>自建 RSS 管理端——解决数据同步的问题</strong></h3><p>为了解决数据同步的问题，可以有两个思路：</p>
+<ol>
+<li>软件同步<ul>
+<li>苹果生态下用 Reeder，然后 iCloud 同步</li>
+<li>全平台rss 阅读器，用官方付费的同步方式</li>
+</ul>
+</li>
+<li>自建 rss 服务端，自助同步进度</li>
+</ol>
+<p>作为一个能折腾的人，我当然选择第二种，目前比较流行的自建 RSS 是 <a target="_blank" rel="noopener" href="https://github.com/FreshRSS/FreshRSS"><strong>freshrss</strong></a>，有非常友好的界面，支持插件，还有比较小众的是 <a target="_blank" rel="noopener" href="https://github.com/miniflux/v2"><strong>miniflux</strong></a>，不支持插件，但是支持图片代理（使用服务所在服务器直接缓存图片，而不是在客户端下载图片）、全文抓取，而且有非常简洁的 webui，并且支持自定义 css 样式。</p>
+<p>所以最终我选择了 miniflux 的方案，而且现在彻底抛弃各种第三方的 rss 阅读器<del>（实际上是因为没有搞定 miniflux 在图片代理后，第三方阅读器上无法展示图片的问题，但是我不说谁又知道呢桀桀桀～）</del>。</p>
+<p>同样使用docker-compose的方式部署：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.4&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">miniflux:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">$&#123;MINIFLUX_IMAGE:-miniflux/miniflux:latest&#125;</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">miniflux</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_URL=postgres://miniflux:miniflux_pass@db/miniflux?sslmode=disable</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">RUN_MIGRATIONS=1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">FETCH_YOUTUBE_WATCH_TIME=1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CREATE_ADMIN=1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ADMIN_USERNAME=user</span>  <span class="comment"># 登录用户名</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ADMIN_PASSWORD=password</span>  <span class="comment"># 登录密码</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">BASE_URL=https://miniflux.test.com/</span>  <span class="comment"># 阅读器的域名</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POLLING_FREQUENCY=10</span>  <span class="comment"># 每个 feed 的刷新间隔</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POLLING_PARSING_ERROR_LIMIT=0</span> <span class="comment">#拉取出错后不会停止拉去，还是会按计划继续拉</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">BATCH_SIZE=100</span>  <span class="comment"># 每次拉取的 feed 数量</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POLLING_SCHEDULER=entry_frequency</span> <span class="comment"># 拉取类型，根据上周的平均更新周期来拉取</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">SCHEDULER_ENTRY_FREQUENCY_MAX_INTERVAL=30</span> <span class="comment"># 接上条，但也不会大于 30 分钟，建议和 POLLING_FREQUENCY 参数一起来看</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MEDIA_PROXY_MODE=all</span> <span class="comment"># 图片代理功能，Miniflux 先把源端的图片缓存到服务器上来，后续就不用客户端去源服务器拉了</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MEDIA_PROXY_PRIVATE_KEY=password</span> <span class="comment"># 使用客户端缓存过文章，然后某个时间重启了 docker 实例，那么会导致图片无法显示的情况，这是因为每次重启会随机生成 PROXY_PRIVATE_KEY,所以可以增加参数 PROXY_PRIVATE_KEY 固化 key ，便于解决更新、重启等场景下的图片显示问题。</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_MAX_CONNS=50</span> <span class="comment"># 增加数据库连接数，对于多图片的 feed 非常有效，可以大幅提升加载和访问速度</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_MIN_CONNS=5</span>  <span class="comment"># 同上</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">WORKER_POOL_SIZE=10</span>  <span class="comment"># 默认，或适当加大</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;1400:8080&quot;</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:15</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">postgres</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_USER=miniflux</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_PASSWORD=miniflux_pass</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_DB=miniflux</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/volume1/docker/miniflux/miniflux-db:/var/lib/postgresql/data</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;pg_isready&quot;</span>, <span class="string">&quot;-U&quot;</span>, <span class="string">&quot;miniflux&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">start_period:</span> <span class="string">30s</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br></pre></td></tr></table></figure>
+
+<p>部署完成之后，访问 1400 端口地址就能访问了，整体的使用方式非常简洁直观。</p>
+<p>!<a target="_blank" rel="noopener" href="https://minapi.tianxiyou.site:43200/tianzhepic/2024/07/05/202407051751420.png">https://minapi.tianxiyou.site:43200/tianzhepic/2024/07/05/202407051751420.png</a></p>
+<p>我的webui 的样式参考了此项目：<a target="_blank" rel="noopener" href="https://github.com/rootknight/Miniflux-Theme-Reeder"><strong>https://github.com/rootknight/Miniflux-Theme-Reeder</strong></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p>折腾了一个星期后，终于是把 rss 的方案定下了，下一个折腾啥呢？</p>
+<aside>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/icons/clock_gray.svg" alt="/icons/clock_gray.svg" width="40px" /> 2024 年 7 月 5 日 17:58:58
+
+</aside></article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/notion-avatar-1703571403454.png" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/notion-avatar-1703571403454.png" title="头像" alt="头像"></a><div class="post-copyright__author_name">田西柚</div><div class="post-copyright__author_desc">矮人看戏何曾见</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/')">RSS 服务自建之路</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=RSS 服务自建之路&amp;url=https://plog.tianxiyou.site/2024/07/05/%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%BB%BA%E4%B9%8B%E8%B7%AF/&amp;pic=https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117100837942.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://plog.tianxiyou.site" target="_blank">TianXiYou</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/docker/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>docker<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/RSS/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>RSS<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>实用教程<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117103952565.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/23/%E5%86%99%E7%9A%84%E6%95%85%E4%BA%8B/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117100358796.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">写的故事</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/12/7%E6%9C%88%E6%B5%8E%E5%8D%97%E6%B8%B8%E8%AE%B0/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117102315078.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">7月济南游记</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/notion-avatar-1703571403454.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有我的<b style="color:#fff">一点感悟</b>和一些小故事，还有<b style="color:#fff">奇怪脑洞</b>和<b style="color:#fff">创作</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到一点点<b style="color:#fff">初心</b>和<b style="color:#fff">快乐</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">田西柚</h1><div class="author-info__desc">矮人看戏何曾见</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/tzzzzzzzzzzz" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rss%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">rss是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8rss%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要用rss？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSS-%E7%9A%84%E9%A3%9F%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">RSS 的食用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB-RSS-%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">3.1.</span> <span class="toc-text">阅读 RSS 的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">如何使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E8%87%AA%E5%B8%A6%E7%9A%84-RSS"><span class="toc-number">3.2.1.</span> <span class="toc-text">网站自带的 RSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%BB%BA%E8%AE%A2%E9%98%85%E6%BA%90%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E4%B8%8D%E6%8F%90%E4%BE%9B-rss-%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BD%91%E7%AB%99%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.2.</span> <span class="toc-text">自建订阅源——解决不提供 rss 服务的网站的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rsshub%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.3.</span> <span class="toc-text">rsshub的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rsshub-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.4.</span> <span class="toc-text">rsshub 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%BB%BA-RSS-%E7%AE%A1%E7%90%86%E7%AB%AF%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.5.</span> <span class="toc-text">自建 RSS 管理端——解决数据同步的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/06/%E5%86%8D%E8%A7%81%F0%9F%91%8B%EF%BC%8C2024/" title="再见👋，2024"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117103952565.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见👋，2024"/></a><div class="content"><a class="title" href="/2025/01/06/%E5%86%8D%E8%A7%81%F0%9F%91%8B%EF%BC%8C2024/" title="再见👋，2024">再见👋，2024</a><time datetime="2025-01-05T16:00:00.000Z" title="发表于 2025-01-06 00:00:00">2025-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/27/%E9%9B%A8%E6%A1%88/" title="雨案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117102130589.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="雨案"/></a><div class="content"><a class="title" href="/2024/08/27/%E9%9B%A8%E6%A1%88/" title="雨案">雨案</a><time datetime="2024-08-27T01:14:11.000Z" title="发表于 2024-08-27 09:14:11">2024-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/07/%E4%B8%80%E9%AA%91%E7%BA%A2%E5%B0%98%E5%A6%83%E5%AD%90%E7%AC%91/" title="一骑红尘妃子笑"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117101718703.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一骑红尘妃子笑"/></a><div class="content"><a class="title" href="/2024/08/07/%E4%B8%80%E9%AA%91%E7%BA%A2%E5%B0%98%E5%A6%83%E5%AD%90%E7%AC%91/" title="一骑红尘妃子笑">一骑红尘妃子笑</a><time datetime="2024-08-07T01:02:05.000Z" title="发表于 2024-08-07 09:02:05">2024-08-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/12/%E5%8D%81%E5%B9%B4%E4%BA%86%EF%BC%8Capplewatch%E8%BF%98%E6%98%AF%E6%9C%80%E4%BC%98%E8%A7%A3%EF%BC%9F/" title="十年了，apple watch还是最优解？"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117103037459.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="十年了，apple watch还是最优解？"/></a><div class="content"><a class="title" href="/2024/07/12/%E5%8D%81%E5%B9%B4%E4%BA%86%EF%BC%8Capplewatch%E8%BF%98%E6%98%AF%E6%9C%80%E4%BC%98%E8%A7%A3%EF%BC%9F/" title="十年了，apple watch还是最优解？">十年了，apple watch还是最优解？</a><time datetime="2024-07-12T08:21:03.000Z" title="发表于 2024-07-12 16:21:03">2024-07-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/12/7%E6%9C%88%E6%B5%8E%E5%8D%97%E6%B8%B8%E8%AE%B0/" title="7月济南游记"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117102315078.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="7月济南游记"/></a><div class="content"><a class="title" href="/2024/07/12/7%E6%9C%88%E6%B5%8E%E5%8D%97%E6%B8%B8%E8%AE%B0/" title="7月济南游记">7月济南游记</a><time datetime="2024-07-12T08:21:03.000Z" title="发表于 2024-07-12 16:21:03">2024-07-12</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2025 By <a class="footer-bar-link" href="/" title="田西柚" target="_blank">田西柚</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">10</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.tianxiyou.site/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://airanime.tianxiyou.site/#/home" title="番剧字典"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/txperl/airAnime/refs/heads/master/favicon.ico" alt="番剧字典"/><span class="back-menu-item-text">番剧字典</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/RSS/" style="font-size: 0.88rem;">RSS<sup>1</sup></a><a href="/tags/docker/" style="font-size: 0.88rem;">docker<sup>1</sup></a><a href="/tags/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">实用教程<sup>1</sup></a><a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 0.88rem;">年终总结<sup>1</sup></a><a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 0.88rem;">思考<sup>2</sup></a><a href="/tags/%E6%96%87%E5%AD%97/" style="font-size: 0.88rem;">文字<sup>2</sup></a><a href="/tags/%E8%AE%BE%E5%A4%87%E4%BD%93%E9%AA%8C/" style="font-size: 0.88rem;">设备体验<sup>1</sup></a><a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 0.88rem;">读后感<sup>2</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2025 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 田西柚 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.tianxiyou.site:43200',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.tianxiyou.site:43200',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.tianxiyou.site:43200',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
