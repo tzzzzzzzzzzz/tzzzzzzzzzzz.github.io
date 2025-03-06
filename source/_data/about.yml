@@ -1,0 +1,106 @@
+- class_name: 关于页
+  subtitle: 平安喜乐，岁岁年年🧨
+  avatarImg: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/notion-avatar-1703571403454.png
+  avatarSkills:
+    left:
+      - 🎨 二次元爱好者
+      - 🎮 冯骥歌词粉丝
+      - 🎵 周杰伦铁粉
+      - 📚 多读点没有的书
+    right:
+      - K-ON天下第一 🎸
+      - 黑悟空天下第一 🐒
+      - LOL只能排第二 🎮
+      - 183cm但丑的很 🤪
+  name: 田西柚
+  description: 是一名 项目经理（伪）、上班族、作家（扑街）、博主
+  aboutsiteTips:
+    tips: 写作
+    title1: 用心创作
+    title2: 用心生活 爱你
+    word:
+      - 写作
+      - 生活
+      - 数码
+      - 旅行
+  helloAbout: Hello there!
+  skillsTips:
+    tips: 技能
+    title: 开启创造力
+  careers:
+    tips: 生涯
+    title: 无限进步
+    list:
+      - desc: EDU,计算机科学与技术专业,2015-2019
+      - desc: Work JAVA,2019-2020
+      - desc: WORK 项目经理,2020-至今
+        color: "#357ef5"
+    img: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117105401241.png
+  statistic:
+    link: /archives
+    text: 文章隧道
+    cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117105435821.png
+  map:
+    title: 我现在住在
+    StrengthenTitle: 中国，山东
+    background: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117105527341.png
+    backgroundDark: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117105605036.png
+  selfInfo:
+    selfInfoTips1: 生于
+    selfInfoContentYear: 1997
+    selfInfoTips2: 山东工商学院
+    selfInfoContent2: 计算机科学与技术
+    selfInfoTips3: 现在职业
+    selfInfoContent3: 项目经理🥵
+  personalities:
+    author_name: 倡导者
+    personality_type: INFJ-A
+    photo_url: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250120085724453.png
+    personality_img: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117105917922.png
+    name_url: https://www.16personalities.com/ch/infj-%E4%BA%BA%E6%A0%BC
+  maxim:
+    maxim_tips: 愿望
+    maxim_top: 平安喜乐，
+    maxim_bottom: 岁岁年年。
+  buff:
+    buff_tips: 特长
+    buff_top: 过目不忘的 红烧肉
+    buff_bottom: 二次元指数 MAX
+  game:
+    game_tips: 爱好游戏
+    game_title: LOL
+    game_uid: "NAME: 星星眼の食蜂操祈"
+    game_bg: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117110138582.png
+  comic:
+    comic_tips: 爱好番剧
+    comic_title: 追番
+    comic_list:
+      - name: 轻音少女
+        href: https://www.bilibili.com/bangumi/media/md28220978
+        cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204100220010.png
+      - name: 咒术回战
+        href: https://www.bilibili.com/bangumi/media/md28229899/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204100237966.png
+      - name: 紫罗兰永恒花园
+        href: https://www.bilibili.com/bangumi/media/md8892/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204100254283.png
+      - name: 鬼灭之刃
+        href: https://www.bilibili.com/bangumi/media/md22718131/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204100307047.png
+      - name: 胆大党
+        href: https://www.bilibili.com/bangumi/media/md23013233
+        cover: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204100434716.png
+  like:
+    like_tips: 产品偏好
+    like_title: APPLE
+    like_bg: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250204095506447.png
+    like_bottom: 苹果生态全家桶
+  music:
+    music_tips: 音乐偏好
+    music_title: 周杰伦、二次元、华语流行
+    music_bg: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250120085608259.png
+    music_link: /music
+  # reward_list:
+  #   - name: 海阔蓝
+  #     amount: 8.8
+  #     datatime: 2023-03-28

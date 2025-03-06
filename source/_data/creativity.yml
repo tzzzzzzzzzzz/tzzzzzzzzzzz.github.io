@@ -1,0 +1,35 @@
+- class_name: 开启创造力
+  creativity_list:
+    - name: LOL
+      color: "#222"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117091720592.png
+    - name: Java
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117085819838.png
+    - name: Docker
+      color: "#57b6e6"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117085837218.png
+    - name: 艾尔登法环
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117092123529.png
+    - name: K-ON
+      color: "#333"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117092343956.png
+    - name: 悟空
+      color: "#2e3a41"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117092422612.png
+    - name: Suwayomi
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117092631707.png
+    - name: Github
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117092945129.png
+    - name: Jellyfin
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250120083726254.png
+    - name: 群晖
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250120083410480.png
+    - name: Vue
+      color: "#fff"
+      icon: https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250117093215258.png
