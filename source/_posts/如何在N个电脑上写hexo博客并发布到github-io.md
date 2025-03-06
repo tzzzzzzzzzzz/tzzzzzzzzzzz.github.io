@@ -17,30 +17,27 @@ cover: 'https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250306214906632
 > 
 > hexo的源文件（部署环境文件）可以都放在hexo分支上（可以新创建一个hexo分支），换新电脑时，直接`git clone hexo分支地址`即可。
 
-### [](#一、hexo搭建博客原理 "一、hexo搭建博客原理")一、hexo搭建博客原理
+### 一、hexo搭建博客原理
 
 hexo博客的部署环境目录：
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607102918.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607102918.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607102918.png)
 
 hexo博客的目录结构解析：
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/155.jpg)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/155.jpg)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/155.jpg)
 
 上传到github( master)的文件是这些：
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607103129.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607103129.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607103129.png)
 
 > 1.hexo帮助把博客发送到github，同时把md文件转换成网页文件。
 > 
 > 2.hexo目录下的文件和github上的文件是不同的，public文件夹的文件通过hexo d 上传到github去了，其他的文件则留在本地目录下。
 
-### [](#二、家里电脑上的操作 "二、家里电脑上的操作")二、家里电脑上的操作
+### 二、家里电脑上的操作
 
-#### [](#1-对username-github-io仓库新建hexo分支，并克隆 "1.对username.github.io仓库新建hexo分支，并克隆")1.对username.github.io仓库新建hexo分支，并克隆
+#### 1.对username.github.io仓库新建hexo分支，并克隆
 
 > (1)在Github的username.github.io仓库上新建一个xxx分支，并切换到该分支
 > 
@@ -48,20 +45,17 @@ hexo博客的目录结构解析：
 > 
 > (3)将该仓库克隆到本地，进入该username.github.io文件目录。
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607004035.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607004035.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607004035.png)
 
 完成上面步骤后，在当前目录使用Git Bash执行`git branch`命令查看当前所在分支，应为新建的分支xxx：
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607005547.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607005547.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607005547.png)
 
-#### [](#2-将家里电脑博客的部署文件拷贝进新克隆的分支username-github-io文件目录 "2.将家里电脑博客的部署文件拷贝进新克隆的分支username.github.io文件目录")2.将家里电脑博客的部署文件拷贝进新克隆的分支username.github.io文件目录
+#### 2.将家里电脑博客的部署文件拷贝进新克隆的分支username.github.io文件目录
 
 先将本地博客的部署文件（**Hexo目录下的全部文件**，modules等文件可不用）全部拷贝进username.github.io文件目录中去。
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607095349.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607095349.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607095349.png)
 
 接下来，进入username.github.io文件目录下，将该目录下的全部文件提交到xxx分支，提交之前需注意：
 
@@ -77,7 +71,7 @@ hexo博客需要忽略的内容例子：
 db.json
 ```
 
-#### [](#3-提交hexo分支 "3.提交hexo分支")3.提交hexo分支
+#### 3.提交hexo分支
 
 依次执行以下代码，即可将博客的hexo部署环境提交到GitHub个人仓库的xxx分支。
 
@@ -89,12 +83,11 @@ db.json
 
 分支上的内容已经更新了：
 
-[![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607100142.png)
-](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607100142.png)
+![](https://puff-blog.oss-cn-shenzhen.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20200607100142.png)
 
 master分支和xxx分支各自保存着一个版本，master分支用于保存博客静态资源，提供博客页面供人访问；xxx分支用于备份博客部署文件，供自己维护更新，两者在一个GitHub仓库内互不冲突，完美！
 
-### [](#三、公司电脑上的操作 "三、公司电脑上的操作")三、公司电脑上的操作
+### 三、公司电脑上的操作
 
 至此，你的博客已经可以在其他电脑上进行同步的维护和更新了，方法很简单：
 
@@ -116,6 +109,6 @@ master分支和xxx分支各自保存着一个版本，master分支用于保存�
 > 
 > 执行`hexo d -g`指令（在此之前，有时可能需要执行`hexo clean`），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！
 
-### [](#四、回到家里电脑更新并提交博客 "四、回到家里电脑更新并提交博客")四、回到家里电脑更新并提交博客
+### 四、回到家里电脑更新并提交博客
 
 **注意： 每次换电脑进行博客更新时，不管上次在其他电脑有没有更新，最好先`git pull`**
