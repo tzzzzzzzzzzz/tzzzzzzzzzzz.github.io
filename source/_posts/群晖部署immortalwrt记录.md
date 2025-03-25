@@ -30,7 +30,6 @@ cover: 'https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250313172545067
 
 1. 点击虚拟机-新增![](https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250313164054669.png)
 2. 选择 Linux![](https://cdn.jsdelivr.net/gh/tzzzzzzzzzzz/blog-img@main/20250313164122446.png)
-3. 按照下图的填写配置内容：![image-20250313164213593](/Users/tianzhe/Library/Application Support/typora-user-images/image-20250313164213593.png)
 
 ### openwrt 初始化设置
 
