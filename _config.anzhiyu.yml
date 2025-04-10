@@ -1050,13 +1050,13 @@ home_top:
   subTitle: 岁岁年年。
   siteText: plog.tianxiyou.site
   category:
-    - name: 博主推荐
-      path: /categories/博主推荐/
+    - name: 必看精选
+      path: /tags/必看精选/
       shadow: var(--anzhiyu-shadow-blue)
       class: blue
       icon: anzhiyu-icon-dove
-    - name: 你好生活
-      path: /categories/你好生活/
+    - name: 我
+      path: /categories/我/
       shadow: var(--anzhiyu-shadow-red)
       class: red
       icon: anzhiyu-icon-fire
